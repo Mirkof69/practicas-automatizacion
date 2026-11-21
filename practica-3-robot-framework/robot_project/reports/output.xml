@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.12.10 on win32)" generated="2026-11-20T21:02:05.869782" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\Miscar\Desktop\Nueva carpeta\historial\tarea qa\practicas-automatizacion\practica-3-robot-framework\robot_project\tests">
+<suite id="s1-s1" name="Busqueda" source="C:\Users\Miscar\Desktop\Nueva carpeta\historial\tarea qa\practicas-automatizacion\practica-3-robot-framework\robot_project\tests\busqueda.robot">
+<kw name="Abrir Sitio En" owner="comunes" type="SETUP">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>C:\\Users\\Miscar\\Desktop\\Nueva carpeta\\historial\\tarea qa\\practicas-automatizacion\\practica-3-robot-framework\\robot_project\\keywords/../screenshots</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-11-20T21:02:06.430253" elapsed="0.000000"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:06.430253" level="INFO">Opening browser 'chrome' to base url 'https://automationexercise.com'.</msg>
+<arg>${url}</arg>
+<arg>${NAVEGADOR}</arg>
+<arg>options=${OPCIONES_CHROME}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-11-20T21:02:06.430253" elapsed="3.543994"/>
+</kw>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
+<arg>${ESPERA}</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" start="2026-11-20T21:02:09.974247" elapsed="0.006682"/>
+</kw>
+<arg>${URL_BASE}</arg>
+<doc>Abre Chrome sin anuncios en la URL indicada y fija la carpeta de capturas.</doc>
+<status status="PASS" start="2026-11-20T21:02:06.423057" elapsed="3.557872"/>
+</kw>
+<test id="s1-s1-t1" name="Ejercicio 3 - Busqueda De Productos" line="10">
+<kw name="Buscar Producto" owner="comunes">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:09.980929" level="INFO">Opening url 'https://automationexercise.com/products'</msg>
+<arg>${URL_PRODUCTOS}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-11-20T21:02:09.980929" elapsed="2.661547"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:12.642476" level="INFO">Verifying element 'xpath://h2[@class='title text-center']' contains exact text 'ALL PRODUCTS'.</msg>
+<arg>${TITULO_SECCION}</arg>
+<arg>ALL PRODUCTS</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2026-11-20T21:02:12.642476" elapsed="0.022119"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:12.664595" level="INFO">Typing text 'saree' into text field 'id:search_product'.</msg>
+<arg>${BUSCADOR}</arg>
+<arg>${termino}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:12.664595" elapsed="0.063700"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:12.728295" level="INFO">Clicking button 'id:submit_search'.</msg>
+<arg>${BOTON_BUSCAR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:12.728295" elapsed="1.296271"/>
+</kw>
+<kw name="Wait Until Element Contains" owner="SeleniumLibrary">
+<arg>${TITULO_SECCION}</arg>
+<arg>SEARCHED PRODUCTS</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.024566" elapsed="0.013882"/>
+</kw>
+<arg>${TERMINO_BUSQUEDA}</arg>
+<status status="PASS" start="2026-11-20T21:02:09.980929" elapsed="4.057519"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:14.052828" level="INFO">Element 'css:.features_items .productinfo p' is displayed.</msg>
+<arg>${NOMBRES_PRODUCTOS}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.038448" elapsed="0.014380"/>
+</kw>
+<kw name="Los Resultados Deberian Corresponder A" owner="comunes">
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:14.060535" level="INFO">Current page contains text 'Searched Products'.</msg>
+<arg>Searched Products</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.052828" elapsed="0.007707"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:14.067726" level="INFO">${productos} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="c4ee6d2a686c1d1a30e5b1e6063d823d", element="f.AD96706F53DCE8371C5502D965F32116.d.602B14932BEF1F949D8A734F1945A057.e.1594")&gt;, &lt;selenium.webdr...</msg>
+<var>${productos}</var>
+<arg>${NOMBRES_PRODUCTOS}</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.060535" elapsed="0.007191"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2026-11-20T21:02:14.067726" level="INFO">Length is 3.</msg>
+<msg time="2026-11-20T21:02:14.067726" level="INFO">${cantidad} = 3</msg>
+<var>${cantidad}</var>
+<arg>${productos}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.067726" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${cantidad} &gt; 0</arg>
+<arg>La búsqueda de "${termino}" no devolvió productos</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.067726" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:14.074925" level="INFO">${nombre} = Cotton Silk Hand Block Print Saree</msg>
+<var>${nombre}</var>
+<arg>${producto}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.067726" elapsed="0.007199"/>
+</kw>
+<kw name="Convert To Lower Case" owner="String">
+<msg time="2026-11-20T21:02:14.074925" level="INFO">${nombre} = cotton silk hand block print saree</msg>
+<var>${nombre}</var>
+<arg>${nombre}</arg>
+<doc>Converts string to lower case.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.074925" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${nombre}</arg>
+<arg>${termino}</arg>
+<arg>El producto "${nombre}" no corresponde a la búsqueda</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.074925" elapsed="0.000000"/>
+</kw>
+<var name="${producto}">&lt;selenium.webdriver.remote.webelement.WebElement (session="c4ee6d2a686c1d1a30e5b1e6063d823d", element="f.AD96706F53DCE8371C5502D965F32116.d.602B14932BEF1F949D8A734F1945A057.e.1594")&gt;</var>
+<status status="PASS" start="2026-11-20T21:02:14.067726" elapsed="0.007199"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:14.082637" level="INFO">${nombre} = Rust Red Linen Saree</msg>
+<var>${nombre}</var>
+<arg>${producto}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.074925" elapsed="0.007712"/>
+</kw>
+<kw name="Convert To Lower Case" owner="String">
+<msg time="2026-11-20T21:02:14.082637" level="INFO">${nombre} = rust red linen saree</msg>
+<var>${nombre}</var>
+<arg>${nombre}</arg>
+<doc>Converts string to lower case.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.082637" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${nombre}</arg>
+<arg>${termino}</arg>
+<arg>El producto "${nombre}" no corresponde a la búsqueda</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.082637" elapsed="0.000000"/>
+</kw>
+<var name="${producto}">&lt;selenium.webdriver.remote.webelement.WebElement (session="c4ee6d2a686c1d1a30e5b1e6063d823d", element="f.AD96706F53DCE8371C5502D965F32116.d.602B14932BEF1F949D8A734F1945A057.e.1587")&gt;</var>
+<status status="PASS" start="2026-11-20T21:02:14.074925" elapsed="0.007712"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:14.089319" level="INFO">${nombre} = Beautiful Peacock Blue Cotton Linen Saree</msg>
+<var>${nombre}</var>
+<arg>${producto}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.082637" elapsed="0.006682"/>
+</kw>
+<kw name="Convert To Lower Case" owner="String">
+<msg time="2026-11-20T21:02:14.089319" level="INFO">${nombre} = beautiful peacock blue cotton linen saree</msg>
+<var>${nombre}</var>
+<arg>${nombre}</arg>
+<doc>Converts string to lower case.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.089319" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${nombre}</arg>
+<arg>${termino}</arg>
+<arg>El producto "${nombre}" no corresponde a la búsqueda</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.089319" elapsed="0.000000"/>
+</kw>
+<var name="${producto}">&lt;selenium.webdriver.remote.webelement.WebElement (session="c4ee6d2a686c1d1a30e5b1e6063d823d", element="f.AD96706F53DCE8371C5502D965F32116.d.602B14932BEF1F949D8A734F1945A057.e.1600")&gt;</var>
+<status status="PASS" start="2026-11-20T21:02:14.082637" elapsed="0.006682"/>
+</iter>
+<var>${producto}</var>
+<value>@{productos}</value>
+<status status="PASS" start="2026-11-20T21:02:14.067726" elapsed="0.021593"/>
+</for>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-11-20T21:02:14.089319" level="INFO">3 productos encontrados para "saree"</msg>
+<arg>${cantidad} productos encontrados para "${termino}"</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.089319" elapsed="0.000000"/>
+</kw>
+<arg>${TERMINO_BUSQUEDA}</arg>
+<doc>Hay al menos un resultado y el nombre de cada producto contiene el término buscado.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.052828" elapsed="0.036491"/>
+</kw>
+<kw name="Tomar Evidencia" owner="comunes">
+<kw name="Replace String Using Regexp" owner="String">
+<msg time="2026-11-20T21:02:14.089319" level="INFO">${nombre} = Ejercicio_3_Busqueda_De_Productos</msg>
+<var>${nombre}</var>
+<arg>${TEST NAME}</arg>
+<arg>[^A-Za-z0-9]+</arg>
+<arg>_</arg>
+<doc>Replaces ``pattern`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.089319" elapsed="0.000000"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:14.161214" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../screenshots/Ejercicio_3_Busqueda_De_Productos_resultados.png"&gt;&lt;img src="../screenshots/Ejercicio_3_Busqueda_De_Productos_resultados.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre}_${paso}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.089319" elapsed="0.071895"/>
+</kw>
+<arg>resultados</arg>
+<doc>Captura con nombre ordenado: &lt;prueba&gt;_&lt;paso&gt;.png en screenshots/.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.089319" elapsed="0.071895"/>
+</kw>
+<kw name="Run Keyword If Test Failed" owner="BuiltIn" type="TEARDOWN">
+<arg>Tomar Evidencia</arg>
+<arg>fallo</arg>
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.161214" elapsed="0.000000"/>
+</kw>
+<doc>Buscar en Productos y validar que cada resultado corresponda al término buscado.</doc>
+<tag>ejercicio3</tag>
+<tag>productos</tag>
+<tag>smoke</tag>
+<status status="PASS" start="2026-11-20T21:02:09.980929" elapsed="4.180285"/>
+</test>
+<kw name="Cerrar Sitio" owner="comunes" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-11-20T21:02:14.161214" elapsed="2.203991"/>
+</kw>
+<status status="PASS" start="2026-11-20T21:02:14.161214" elapsed="2.203991"/>
+</kw>
+<doc>Ejercicio 3 de la Práctica 3: búsqueda de productos.</doc>
+<status status="PASS" start="2026-11-20T21:02:05.921155" elapsed="10.444050"/>
+</suite>
+<suite id="s1-s2" name="Login" source="C:\Users\Miscar\Desktop\Nueva carpeta\historial\tarea qa\practicas-automatizacion\practica-3-robot-framework\robot_project\tests\login.robot">
+<kw name="Preparar Suite De Login" type="SETUP">
+<kw name="Crear Cuenta De Prueba" owner="CuentaPrueba">
+<msg time="2026-11-20T21:02:17.828454" level="INFO">${correo} = qa.robot.20261120210216@example.com</msg>
+<var>${correo}</var>
+<arg>${NOMBRE_USUARIO}</arg>
+<arg>${CLAVE_VALIDA}</arg>
+<doc>Crea la cuenta y devuelve su correo (único por ejecución).</doc>
+<status status="PASS" start="2026-11-20T21:02:16.372913" elapsed="1.455541"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-11-20T21:02:17.828454" level="INFO">${CORREO_VALIDO} = qa.robot.20261120210216@example.com</msg>
+<arg>${CORREO_VALIDO}</arg>
+<arg>${correo}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-11-20T21:02:17.828454" elapsed="0.000000"/>
+</kw>
+<kw name="Abrir Sitio En" owner="comunes">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>C:\\Users\\Miscar\\Desktop\\Nueva carpeta\\historial\\tarea qa\\practicas-automatizacion\\practica-3-robot-framework\\robot_project\\keywords/../screenshots</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-11-20T21:02:17.828454" elapsed="0.000000"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:17.835643" level="INFO">Opening browser 'chrome' to base url 'https://automationexercise.com'.</msg>
+<arg>${url}</arg>
+<arg>${NAVEGADOR}</arg>
+<arg>options=${OPCIONES_CHROME}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2026-11-20T21:02:17.828454" elapsed="3.823890"/>
+</kw>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
+<arg>${ESPERA}</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" start="2026-11-20T21:02:21.652344" elapsed="0.000000"/>
+</kw>
+<arg>${URL_BASE}</arg>
+<doc>Abre Chrome sin anuncios en la URL indicada y fija la carpeta de capturas.</doc>
+<status status="PASS" start="2026-11-20T21:02:17.828454" elapsed="3.823890"/>
+</kw>
+<status status="PASS" start="2026-11-20T21:02:16.372913" elapsed="5.279431"/>
+</kw>
+<test id="s1-s2-t1" name="Ejercicio 1 - Login Correcto" line="15">
+<kw name="Iniciar Sesion Con" owner="comunes">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:21.652344" level="INFO">Opening url 'https://automationexercise.com/login'</msg>
+<arg>${URL_LOGIN}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-11-20T21:02:21.652344" elapsed="0.372847"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:22.032377" level="INFO">Page title is 'Automation Exercise - Signup / Login'.</msg>
+<arg>${TITULO_LOGIN}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-11-20T21:02:22.032377" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:22.032377" level="INFO">Typing text 'qa.robot.20261120210216@example.com' into text field 'css:input[data-qa='login-email']'.</msg>
+<arg>${CAMPO_CORREO}</arg>
+<arg>${correo}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:22.032377" elapsed="0.070885"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:22.103262" level="INFO">Typing password into text field 'name:password'.</msg>
+<msg time="2026-11-20T21:02:22.139736" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>${CAMPO_CLAVE}</arg>
+<arg>${clave}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:22.103262" elapsed="0.065249"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:22.168511" level="INFO">Clicking button 'xpath://button[@data-qa='login-button']'.</msg>
+<arg>${BOTON_INGRESAR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:22.168511" elapsed="3.790939"/>
+</kw>
+<arg>${CORREO_VALIDO}</arg>
+<arg>${CLAVE_VALIDA}</arg>
+<doc>Completa el formulario de login y envía.</doc>
+<status status="PASS" start="2026-11-20T21:02:21.652344" elapsed="4.307106"/>
+</kw>
+<kw name="El Usuario Deberia Estar Conectado" owner="comunes">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:25.981040" level="INFO">Element 'xpath://a[contains(., 'Logged in as')]' is displayed.</msg>
+<arg>${USUARIO_CONECTADO}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-20T21:02:25.959450" elapsed="0.021590"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:25.981040" level="INFO">Verifying element 'xpath://a[contains(., 'Logged in as')]' contains exact text 'Logged in as QA Robot'.</msg>
+<arg>${USUARIO_CONECTADO}</arg>
+<arg>Logged in as ${nombre}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2026-11-20T21:02:25.981040" elapsed="0.007191"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:25.994914" level="INFO">Current page contains element 'css:a[href='/logout']'.</msg>
+<arg>${ENLACE_SALIR}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2026-11-20T21:02:25.988231" elapsed="0.006683"/>
+</kw>
+<arg>${NOMBRE_USUARIO}</arg>
+<status status="PASS" start="2026-11-20T21:02:25.959450" elapsed="0.035464"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:26.002101" level="INFO">Page title is 'Automation Exercise'.</msg>
+<arg>${TITULO_INICIO}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-11-20T21:02:25.994914" elapsed="0.007187"/>
+</kw>
+<kw name="Tomar Evidencia" owner="comunes">
+<kw name="Replace String Using Regexp" owner="String">
+<msg time="2026-11-20T21:02:26.002101" level="INFO">${nombre} = Ejercicio_1_Login_Correcto</msg>
+<var>${nombre}</var>
+<arg>${TEST NAME}</arg>
+<arg>[^A-Za-z0-9]+</arg>
+<arg>_</arg>
+<doc>Replaces ``pattern`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-11-20T21:02:26.002101" elapsed="0.000000"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:26.081187" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../screenshots/Ejercicio_1_Login_Correcto_sesion_iniciada.png"&gt;&lt;img src="../screenshots/Ejercicio_1_Login_Correcto_sesion_iniciada.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre}_${paso}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-11-20T21:02:26.002101" elapsed="0.079086"/>
+</kw>
+<arg>sesion_iniciada</arg>
+<doc>Captura con nombre ordenado: &lt;prueba&gt;_&lt;paso&gt;.png en screenshots/.</doc>
+<status status="PASS" start="2026-11-20T21:02:26.002101" elapsed="0.079086"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:26.087866" level="INFO">Clicking link 'css:a[href='/logout']'.</msg>
+<arg>${ENLACE_SALIR}</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:26.081187" elapsed="0.814560"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:26.903444" level="INFO">Current page contains element 'xpath://button[@data-qa='login-button']'.</msg>
+<arg>${BOTON_INGRESAR}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2026-11-20T21:02:26.895747" elapsed="0.007697"/>
+</kw>
+<kw name="Run Keyword If Test Failed" owner="BuiltIn" type="TEARDOWN">
+<arg>Tomar Evidencia</arg>
+<arg>fallo</arg>
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<status status="PASS" start="2026-11-20T21:02:26.903444" elapsed="0.000000"/>
+</kw>
+<doc>Login con credenciales válidas: el usuario accede al sistema.</doc>
+<tag>ejercicio1</tag>
+<tag>login</tag>
+<tag>smoke</tag>
+<status status="PASS" start="2026-11-20T21:02:21.652344" elapsed="5.251100"/>
+</test>
+<test id="s1-s2-t2" name="Ejercicio 2 - Login Incorrecto" line="25">
+<kw name="Iniciar Sesion Con" owner="comunes">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:26.910116" level="INFO">Opening url 'https://automationexercise.com/login'</msg>
+<arg>${URL_LOGIN}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-11-20T21:02:26.910116" elapsed="0.436572"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:27.346688" level="INFO">Page title is 'Automation Exercise - Signup / Login'.</msg>
+<arg>${TITULO_LOGIN}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2026-11-20T21:02:27.346688" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:27.346688" level="INFO">Typing text 'no.existe.robot@example.com' into text field 'css:input[data-qa='login-email']'.</msg>
+<arg>${CAMPO_CORREO}</arg>
+<arg>${correo}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:27.346688" elapsed="0.049335"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:27.403729" level="INFO">Typing password into text field 'name:password'.</msg>
+<msg time="2026-11-20T21:02:27.418128" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>${CAMPO_CLAVE}</arg>
+<arg>${clave}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:27.396023" elapsed="0.050375"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:27.446398" level="INFO">Clicking button 'xpath://button[@data-qa='login-button']'.</msg>
+<arg>${BOTON_INGRESAR}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2026-11-20T21:02:27.446398" elapsed="0.695903"/>
+</kw>
+<arg>${CORREO_INVALIDO}</arg>
+<arg>${CLAVE_INVALIDA}</arg>
+<doc>Completa el formulario de login y envía.</doc>
+<status status="PASS" start="2026-11-20T21:02:26.903444" elapsed="1.238857"/>
+</kw>
+<kw name="Deberia Mostrarse El Error De Login" owner="comunes">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:28.149479" level="INFO">Element 'xpath://form[@action='/login']/p' is displayed.</msg>
+<arg>${ERROR_LOGIN}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.142301" elapsed="0.007178"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:28.149479" level="INFO">Verifying element 'xpath://form[@action='/login']/p' contains exact text 'Your email or password is incorrect!'.</msg>
+<arg>${ERROR_LOGIN}</arg>
+<arg>${MENSAJE_ERROR_LOGIN}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.149479" elapsed="0.014889"/>
+</kw>
+<kw name="Page Should Not Contain Element" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:28.164368" level="INFO">Current page does not contain element 'css:a[href='/logout']'.</msg>
+<arg>${ENLACE_SALIR}</arg>
+<doc>Verifies that element ``locator`` is not found on the current page.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.164368" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-11-20T21:02:28.142301" elapsed="0.022067"/>
+</kw>
+<kw name="Location Should Be" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:28.171047" level="INFO">Current location is 'https://automationexercise.com/login'.</msg>
+<arg>${URL_LOGIN}</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.164368" elapsed="0.006679"/>
+</kw>
+<kw name="Tomar Evidencia" owner="comunes">
+<kw name="Replace String Using Regexp" owner="String">
+<msg time="2026-11-20T21:02:28.171047" level="INFO">${nombre} = Ejercicio_2_Login_Incorrecto</msg>
+<var>${nombre}</var>
+<arg>${TEST NAME}</arg>
+<arg>[^A-Za-z0-9]+</arg>
+<arg>_</arg>
+<doc>Replaces ``pattern`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.171047" elapsed="0.000000"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-11-20T21:02:28.214165" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../screenshots/Ejercicio_2_Login_Incorrecto_mensaje_error.png"&gt;&lt;img src="../screenshots/Ejercicio_2_Login_Incorrecto_mensaje_error.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre}_${paso}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.171047" elapsed="0.043118"/>
+</kw>
+<arg>mensaje_error</arg>
+<doc>Captura con nombre ordenado: &lt;prueba&gt;_&lt;paso&gt;.png en screenshots/.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.171047" elapsed="0.043118"/>
+</kw>
+<kw name="Run Keyword If Test Failed" owner="BuiltIn" type="TEARDOWN">
+<arg>Tomar Evidencia</arg>
+<arg>fallo</arg>
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.214165" elapsed="0.000000"/>
+</kw>
+<doc>Login con credenciales inválidas: se muestra el mensaje de error del sistema.</doc>
+<tag>ejercicio2</tag>
+<tag>login</tag>
+<tag>negativo</tag>
+<status status="PASS" start="2026-11-20T21:02:26.903444" elapsed="1.310721"/>
+</test>
+<kw name="Limpiar Suite De Login" type="TEARDOWN">
+<kw name="Cerrar Sitio" owner="comunes">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-11-20T21:02:28.214165" elapsed="2.217431"/>
+</kw>
+<status status="PASS" start="2026-11-20T21:02:28.214165" elapsed="2.217431"/>
+</kw>
+<kw name="Eliminar Cuenta De Prueba" owner="CuentaPrueba">
+<arg>${CORREO_VALIDO}</arg>
+<arg>${CLAVE_VALIDA}</arg>
+<status status="PASS" start="2026-11-20T21:02:30.431596" elapsed="1.743970"/>
+</kw>
+<status status="PASS" start="2026-11-20T21:02:28.214165" elapsed="3.961401"/>
+</kw>
+<doc>Ejercicio 1 (login correcto) y Ejercicio 2 (login incorrecto) de la Práctica 3.
+La cuenta válida se crea por la API antes de la suite y se elimina al final.</doc>
+<status status="PASS" start="2026-11-20T21:02:16.365205" elapsed="15.810361"/>
+</suite>
+<status status="PASS" start="2026-11-20T21:02:05.869782" elapsed="26.305784"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">ejercicio1</stat>
+<stat pass="1" fail="0" skip="0">ejercicio2</stat>
+<stat pass="1" fail="0" skip="0">ejercicio3</stat>
+<stat pass="2" fail="0" skip="0">login</stat>
+<stat pass="1" fail="0" skip="0">negativo</stat>
+<stat pass="1" fail="0" skip="0">productos</stat>
+<stat pass="2" fail="0" skip="0">smoke</stat>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="3" fail="0" skip="0">Tests</stat>
+<stat name="Busqueda" id="s1-s1" pass="1" fail="0" skip="0">Tests.Busqueda</stat>
+<stat name="Login" id="s1-s2" pass="2" fail="0" skip="0">Tests.Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
