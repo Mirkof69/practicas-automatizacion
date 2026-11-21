@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# capturas automáticas de un intento fallido anterior (las válidas sí se versionan)
+practica-3-robot-framework/robot_project/screenshots/*_fallo.png
+practica-3-robot-framework/robot_project/screenshots/selenium-screenshot-*.png
