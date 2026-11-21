@@ -70,6 +70,29 @@ cd practica-2-selenium-webdriver && ..\.venv\Scripts\python -m pytest
 cd practica-3-robot-framework\robot_project && ..\..\.venv\Scripts\python -m robot --outputdir reports tests
 ```
 
+## Flujo de trabajo con Git (GitFlow)
+
+El repositorio sigue GitFlow:
+
+| Rama | Para qué sirve |
+|---|---|
+| `main` | Versiones entregadas. Cada una lleva su etiqueta (`v1.0.0`). |
+| `develop` | Integración: recibe cada práctica terminada. |
+| `feature/practica-1-selenium-ide` | Desarrollo de la Práctica 1. |
+| `feature/practica-2-selenium-webdriver` | Desarrollo de la Práctica 2. |
+| `feature/practica-3-robot-framework` | Desarrollo de la Práctica 3. |
+| `feature/documentacion` | README con la instalación, la ejecución y este flujo. |
+| `release/1.0.0` | Preparación de la entrega: informes en PDF y CHANGELOG. |
+
+Cada `feature/*` nace de `develop` y vuelve a `develop` con un merge `--no-ff`, para que el historial muestre qué
+commits forman cada práctica. La entrega sale de `release/1.0.0`, que se une a `main` (con la etiqueta `v1.0.0`) y
+de vuelta a `develop`. Los mensajes de commit siguen el formato `tipo(ámbito): descripción`, con los tipos `feat`
+(funcionalidad o prueba nueva), `test` (evidencias y reportes), `docs` (documentación) y `chore` (configuración).
+
+```bash
+git log --graph --oneline --all    # ver las ramas y los merges
+```
+
 ## Decisiones
 
 - **Cuenta de prueba por API.** El login correcto crea una cuenta nueva con la API pública del sitio
