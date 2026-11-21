@@ -1,0 +1,2 @@
+Archivo de prueba adjuntado por Selenium WebDriver en el formulario Contact Us.
+Práctica 2 - Testing, Quality Assurance.
