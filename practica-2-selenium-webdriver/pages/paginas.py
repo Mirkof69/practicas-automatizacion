@@ -50,3 +50,22 @@ class MenuSuperior(Pagina):
 
     def usuario(self) -> str:
         return self.visible(self.USUARIO).text
+
+
+class ProductosPage(Pagina):
+    BUSCADOR = (By.ID, "search_product")                                # ID
+    BUSCAR = (By.ID, "submit_search")                                   # ID
+    TITULO = (By.XPATH, "//h2[@class='title text-center']")             # XPath
+    NOMBRES = (By.CSS_SELECTOR, ".features_items .productinfo p")       # CSS Selector
+
+    def abrir(self):
+        self.driver.get(f"{BASE_URL}/products")
+        return self
+
+    def buscar(self, termino: str):
+        self.escribir(self.BUSCADOR, termino)
+        self.clic(self.BUSCAR)
+        self.wait.until(EC.text_to_be_present_in_element(self.TITULO, "SEARCHED PRODUCTS"))
+
+    def nombres(self) -> list[str]:
+        return [e.text for e in self.driver.find_elements(*self.NOMBRES)]
