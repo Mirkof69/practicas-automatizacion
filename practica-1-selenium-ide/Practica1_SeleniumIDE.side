@@ -1,0 +1,276 @@
+{
+  "id": "d17a68ce-a18a-53f7-947d-013f241b4cb6",
+  "version": "2.0",
+  "name": "Practica 1 - Selenium IDE",
+  "url": "https://automationexercise.com",
+  "tests": [
+    {
+      "id": "8cac34df-f1b9-562c-950b-9091b204be74",
+      "name": "Ejercicio 3 - Inicio de sesion incorrecto",
+      "commands": [
+        {
+          "id": "adac0914-1949-555d-a448-a20ef64250cd",
+          "comment": "Página de login",
+          "command": "open",
+          "target": "/login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "b10396e3-5d7c-5fe4-8733-09dc3f26c7ff",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1366x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "7c749de9-97a3-525b-b631-757ca54fcb0b",
+          "comment": "VALIDACIÓN: estamos en el login",
+          "command": "verifyTitle",
+          "target": "Automation Exercise - Signup / Login",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "f8a069de-573b-5df1-a473-2912ae17573f",
+          "comment": "VALIDACIÓN: existe el campo correo",
+          "command": "assertElementPresent",
+          "target": "css=input[data-qa='login-email']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "d6cda2c7-4870-562b-930e-cbbf51fb9881",
+          "comment": "Correo que no está registrado",
+          "command": "type",
+          "target": "css=input[data-qa='login-email']",
+          "targets": [],
+          "value": "qa.ide.no.existe@example.com"
+        },
+        {
+          "id": "1dc412c2-cff1-5389-b11f-d08d68ea7699",
+          "comment": "Contraseña incorrecta",
+          "command": "type",
+          "target": "name=password",
+          "targets": [],
+          "value": "ClaveIncorrecta.123"
+        },
+        {
+          "id": "1f12c52e-05f0-59ef-b07d-74b076a4605a",
+          "comment": "Pulsar Login",
+          "command": "click",
+          "target": "css=button[data-qa='login-button']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00d8a4c2-a90b-59f6-9f33-d69a168c20d3",
+          "comment": "Espera el mensaje de error",
+          "command": "waitForElementVisible",
+          "target": "xpath=//form[@action='/login']/p",
+          "targets": [],
+          "value": "15000"
+        },
+        {
+          "id": "ad53b53f-a3c3-55d5-a751-ec5b93ac87c6",
+          "comment": "VALIDACIÓN: mensaje de error exacto",
+          "command": "assertText",
+          "target": "xpath=//form[@action='/login']/p",
+          "targets": [],
+          "value": "Your email or password is incorrect!"
+        },
+        {
+          "id": "661b613a-47bf-5f9e-baec-6c3232bef3a9",
+          "comment": "VALIDACIÓN: no inició sesión (no hay Logout)",
+          "command": "assertElementNotPresent",
+          "target": "css=a[href='/logout']",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "1873d75c-140a-5758-9908-43d9d16cfefb",
+      "name": "Ejercicio 4 - Busqueda de productos",
+      "commands": [
+        {
+          "id": "5c983ffd-9921-5255-9aae-6a849b948fa7",
+          "comment": "Página de productos",
+          "command": "open",
+          "target": "/products",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "6bb1dd34-6293-57b6-bcde-cfef42c9ab19",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1366x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "8e4f626c-cd94-5d71-bbd4-4c9c3318c437",
+          "comment": "VALIDACIÓN: listado completo",
+          "command": "assertText",
+          "target": "xpath=//h2[@class='title text-center']",
+          "targets": [],
+          "value": "ALL PRODUCTS"
+        },
+        {
+          "id": "e0af9e57-3d8f-595a-aaf5-39468a9b80c8",
+          "comment": "Término de búsqueda",
+          "command": "type",
+          "target": "id=search_product",
+          "targets": [],
+          "value": "dress"
+        },
+        {
+          "id": "7457a62e-d7ab-5abc-94af-9d8370ec214a",
+          "comment": "Pulsar buscar",
+          "command": "click",
+          "target": "id=submit_search",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "15e82da1-ed9b-59bb-ab59-e98de630e528",
+          "comment": "Espera los resultados",
+          "command": "waitForText",
+          "target": "xpath=//h2[@class='title text-center']",
+          "targets": [],
+          "value": "SEARCHED PRODUCTS"
+        },
+        {
+          "id": "d22f7c4f-7823-57fb-b573-59ee521ccb28",
+          "comment": "VALIDACIÓN: título de resultados",
+          "command": "assertText",
+          "target": "xpath=//h2[@class='title text-center']",
+          "targets": [],
+          "value": "SEARCHED PRODUCTS"
+        },
+        {
+          "id": "4fe960e5-66b5-5d2e-bf90-48c4a96520a9",
+          "comment": "VALIDACIÓN: hay al menos un producto relacionado con «dress»",
+          "command": "assertElementPresent",
+          "target": "xpath=//div[@class='productinfo text-center']/p[contains(., 'Dress')]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "0047c868-e9d9-5748-b5a6-02f1f5af6f2c",
+          "comment": "Cuenta los productos mostrados",
+          "command": "executeScript",
+          "target": "return document.querySelectorAll('.features_items .productinfo').length > 0",
+          "targets": [],
+          "value": "hayResultados"
+        },
+        {
+          "id": "506939ee-c17e-5629-bc24-0460e45f2e17",
+          "comment": "VALIDACIÓN: la búsqueda devolvió resultados",
+          "command": "assert",
+          "target": "hayResultados",
+          "targets": [],
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "id": "d282796b-e10d-57b6-baaf-6925797277ca",
+      "name": "Ejercicio 6 - Suscripcion por correo",
+      "commands": [
+        {
+          "id": "6db46a7b-dea9-5025-acbf-9515f2963848",
+          "comment": "Página de inicio",
+          "command": "open",
+          "target": "/",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "632c58ae-c00a-52d6-8ee2-abe109f03f32",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1366x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "b6957a4b-b9c6-503e-b7cd-11ceb99059ee",
+          "comment": "VALIDACIÓN: existe el campo de suscripción",
+          "command": "assertElementPresent",
+          "target": "id=susbscribe_email",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "007ed2e0-8292-57da-92ae-4139ce053da3",
+          "comment": "Correo para suscribirse",
+          "command": "type",
+          "target": "id=susbscribe_email",
+          "targets": [],
+          "value": "qa.ide.suscripcion@example.com"
+        },
+        {
+          "id": "971cfb6d-cc57-596d-9d34-96c6ca8d7629",
+          "comment": "Pulsar la flecha de suscripción",
+          "command": "click",
+          "target": "id=subscribe",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "5f2b97fe-f29d-5b39-b4d2-5a3aa0aea434",
+          "comment": "Espera el mensaje de éxito",
+          "command": "waitForElementVisible",
+          "target": "id=success-subscribe",
+          "targets": [],
+          "value": "15000"
+        },
+        {
+          "id": "f9eab803-6359-58f7-a7e2-22eda7c22076",
+          "comment": "VALIDACIÓN: mensaje de éxito exacto",
+          "command": "assertText",
+          "target": "css=#success-subscribe .alert-success",
+          "targets": [],
+          "value": "You have been successfully subscribed!"
+        },
+        {
+          "id": "35c8f6ed-4eb3-545e-8993-b2b77d6df858",
+          "comment": "Lleva el mensaje a la vista para la evidencia",
+          "command": "executeScript",
+          "target": "document.getElementById('success-subscribe').scrollIntoView({block: 'center'})",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "8d243752-c88c-5883-b297-43e0d517a1a9",
+          "comment": "Deja ver el mensaje antes de terminar",
+          "command": "pause",
+          "target": "800",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "70a874aa-b0de-57ab-a35b-1c1a1f1db619",
+      "name": "Practica 1 - Selenium IDE",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "8cac34df-f1b9-562c-950b-9091b204be74",
+        "1873d75c-140a-5758-9908-43d9d16cfefb",
+        "d282796b-e10d-57b6-baaf-6925797277ca"
+      ]
+    }
+  ],
+  "urls": [
+    "https://automationexercise.com/"
+  ],
+  "plugins": []
+}
