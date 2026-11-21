@@ -23,3 +23,16 @@ def test_ej2_login_correcto(navegador, cuenta_prueba, captura):
     assert usuario == f"Logged in as {cuenta_prueba['name']}"                   # assert 2: nombre del usuario
     assert menu.visible(menu.SALIR).is_displayed()                               # assert 3: aparece «Logout»
     assert navegador.current_url.rstrip("/") == BASE_URL                         # assert 4: volvió al inicio
+
+
+def test_ej4_busqueda_de_productos(navegador, captura):
+    """Ejercicio 4: buscar un producto y validar que los resultados correspondan al criterio de búsqueda."""
+    termino = "jean"
+    productos = ProductosPage(navegador).abrir()
+    assert productos.visible(productos.TITULO).text == "ALL PRODUCTS"             # assert 1: listado completo
+    productos.buscar(termino)
+    nombres = productos.nombres()
+    captura("resultados_busqueda")
+    assert productos.visible(productos.TITULO).text == "SEARCHED PRODUCTS"        # assert 2: título de resultados
+    assert len(nombres) > 0, "La búsqueda no devolvió productos"                 # assert 3: hay resultados
+    assert all(termino in n.lower() for n in nombres), f"Resultados fuera del criterio: {nombres}"   # assert 4
