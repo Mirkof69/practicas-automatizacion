@@ -69,3 +69,29 @@ class ProductosPage(Pagina):
 
     def nombres(self) -> list[str]:
         return [e.text for e in self.driver.find_elements(*self.NOMBRES)]
+
+
+class ContactoPage(Pagina):
+    NOMBRE = (By.NAME, "name")                                          # Name
+    CORREO = (By.CSS_SELECTOR, "input[data-qa='email']")               # CSS Selector
+    ASUNTO = (By.NAME, "subject")                                       # Name
+    MENSAJE = (By.ID, "message")                                        # ID
+    ARCHIVO = (By.NAME, "upload_file")                                  # Name
+    ENVIAR = (By.XPATH, "//input[@data-qa='submit-button']")            # XPath
+    EXITO = (By.CSS_SELECTOR, "#contact-page .status.alert-success")   # CSS Selector
+    INICIO = (By.XPATH, "//a[contains(@class,'btn-success')]")          # XPath
+
+    def abrir(self):
+        self.driver.get(f"{BASE_URL}/contact_us")
+        return self
+
+    def completar(self, nombre: str, correo: str, asunto: str, mensaje: str, archivo: str):
+        self.escribir(self.NOMBRE, nombre)
+        self.escribir(self.CORREO, correo)
+        self.escribir(self.ASUNTO, asunto)
+        self.escribir(self.MENSAJE, mensaje)
+        self.driver.find_element(*self.ARCHIVO).send_keys(archivo)   # adjuntar = escribir la ruta en el input file
+
+    def enviar(self):
+        self.clic(self.ENVIAR)
+        self.wait.until(EC.alert_is_present()).accept()   # el sitio pide confirmar con una alerta de JavaScript
