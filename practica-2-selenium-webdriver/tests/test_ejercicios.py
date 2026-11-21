@@ -1,0 +1,52 @@
+"""Práctica 2 · Selenium WebDriver con Python. Ejercicios elegidos: 2 (login correcto), 4 (búsqueda de productos)
+y 5 (Contact Us con archivo adjunto). Cada ejercicio tiene al menos 2 asserts y al menos 1 captura.
+"""
+from __future__ import annotations
+
+from pathlib import Path
+
+from pages.paginas import BASE_URL, ContactoPage, LoginPage, MenuSuperior, ProductosPage
+
+ADJUNTO = Path(__file__).resolve().parents[1] / "data" / "archivo_adjunto.txt"
+
+
+def test_ej2_login_correcto(navegador, cuenta_prueba, captura):
+    """Ejercicio 2: login con credenciales válidas y validación de que el usuario ingresó al sistema."""
+    login = LoginPage(navegador).abrir()
+    assert "Automation Exercise - Signup / Login" == navegador.title             # assert 1: página de login
+    captura("formulario_login")
+    login.ingresar(cuenta_prueba["email"], cuenta_prueba["password"])
+
+    menu = MenuSuperior(navegador)
+    usuario = menu.usuario()
+    captura("sesion_iniciada")
+    assert usuario == f"Logged in as {cuenta_prueba['name']}"                   # assert 2: nombre del usuario
+    assert menu.visible(menu.SALIR).is_displayed()                               # assert 3: aparece «Logout»
+    assert navegador.current_url.rstrip("/") == BASE_URL                         # assert 4: volvió al inicio
+
+
+def test_ej4_busqueda_de_productos(navegador, captura):
+    """Ejercicio 4: buscar un producto y validar que los resultados correspondan al criterio de búsqueda."""
+    termino = "jean"
+    productos = ProductosPage(navegador).abrir()
+    assert productos.visible(productos.TITULO).text == "ALL PRODUCTS"             # assert 1: listado completo
+    productos.buscar(termino)
+    nombres = productos.nombres()
+    captura("resultados_busqueda")
+    assert productos.visible(productos.TITULO).text == "SEARCHED PRODUCTS"        # assert 2: título de resultados
+    assert len(nombres) > 0, "La búsqueda no devolvió productos"                 # assert 3: hay resultados
+    assert all(termino in n.lower() for n in nombres), f"Resultados fuera del criterio: {nombres}"   # assert 4
+
+
+def test_ej5_contact_us_con_archivo(navegador, captura):
+    """Ejercicio 5: completar Contact Us, adjuntar un archivo y validar el mensaje de confirmación."""
+    contacto = ContactoPage(navegador).abrir()
+    assert contacto.visible(contacto.MENSAJE).is_displayed()                     # assert 1: formulario
+    contacto.completar("QA Practica", "qa.practica@example.com", "Consulta de prueba automatizada",
+                       "Mensaje enviado por una prueba automatizada con Selenium WebDriver.", str(ADJUNTO))
+    captura("formulario_completo")
+    contacto.enviar()
+    exito = contacto.visible(contacto.EXITO)
+    captura("mensaje_confirmacion")
+    assert exito.text == "Success! Your details have been submitted successfully."   # assert 2: confirmación
+    assert contacto.visible(contacto.INICIO).is_displayed()                      # assert 3: botón para volver
