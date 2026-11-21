@@ -36,3 +36,17 @@ def test_ej4_busqueda_de_productos(navegador, captura):
     assert productos.visible(productos.TITULO).text == "SEARCHED PRODUCTS"        # assert 2: título de resultados
     assert len(nombres) > 0, "La búsqueda no devolvió productos"                 # assert 3: hay resultados
     assert all(termino in n.lower() for n in nombres), f"Resultados fuera del criterio: {nombres}"   # assert 4
+
+
+def test_ej5_contact_us_con_archivo(navegador, captura):
+    """Ejercicio 5: completar Contact Us, adjuntar un archivo y validar el mensaje de confirmación."""
+    contacto = ContactoPage(navegador).abrir()
+    assert contacto.visible(contacto.MENSAJE).is_displayed()                     # assert 1: formulario
+    contacto.completar("QA Practica", "qa.practica@example.com", "Consulta de prueba automatizada",
+                       "Mensaje enviado por una prueba automatizada con Selenium WebDriver.", str(ADJUNTO))
+    captura("formulario_completo")
+    contacto.enviar()
+    exito = contacto.visible(contacto.EXITO)
+    captura("mensaje_confirmacion")
+    assert exito.text == "Success! Your details have been submitted successfully."   # assert 2: confirmación
+    assert contacto.visible(contacto.INICIO).is_displayed()                      # assert 3: botón para volver
